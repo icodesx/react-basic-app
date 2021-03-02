@@ -7,6 +7,7 @@ class App extends Component {
         characters: [],
     }
 
+    // Delete a character from the UI
     removeCharacter = (index) => {
         const { characters } = this.state;
 
@@ -17,6 +18,7 @@ class App extends Component {
         });
     }
 
+    // Add a character to state
     handleSubmit = (character) => {
         this.setState({ characters: [...this.state.characters, character] });
     }
