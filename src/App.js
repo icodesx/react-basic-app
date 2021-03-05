@@ -1,37 +1,31 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import Table from './Table'
 import Form from './Form'
 
-class App extends Component {
-    state = {
-        characters: [],
-    }
+const App = () => {
+    const [characters, setCharacter] = useState([]);
 
     // Delete a character from the UI
-    removeCharacter = (index) => {
-        const { characters } = this.state;
-
-        this.setState({
-            characters: characters.filter((character, i) => {
-                return i !== index
-            }),
-        });
+    const removeCharacter = (index) => {
+        setCharacter(characters.filter((character) => character.i !== index))
     }
 
     // Add a character to state
-    handleSubmit = (character) => {
-        this.setState({ characters: [...this.state.characters, character] });
+    const handleSubmit = (character) => {
+        const id = Math.floor(Math.random() * 1000) + 1
+        const newCharacter = { id, ...character }
+
+        setCharacter([...characters, newCharacter])
     }
 
-    render() {
-        const { characters } = this.state;
-        return (
-            <div className='container' >
-                <Table characterData={characters} removeCharacter={this.removeCharacter} />
-                <Form handleSubmit={this.handleSubmit} />
-            </div>
-        );
-    }
+    //const { characters } = this.state;
+    return (
+        <div className='container' >
+            <Table characterData={characters} removeCharacter={removeCharacter} />
+            <Form handleSubmit={handleSubmit} />
+        </div>
+    );
+
 }
 
 export default App
