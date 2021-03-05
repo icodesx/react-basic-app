@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import Table from './Table'
 import Form from './Form'
 
@@ -7,18 +7,17 @@ const App = () => {
 
     // Delete a character from the UI
     const removeCharacter = (index) => {
-        setCharacter(characters.filter((character) => character.i !== index))
+        setCharacter(characters.filter((character) => character.id !== index))
     }
 
     // Add a character to state
     const handleSubmit = (character) => {
-        const id = Math.floor(Math.random() * 1000) + 1
+        const id = Math.floor(Math.random() * 1000) + 1 // Generate a random number as ID
         const newCharacter = { id, ...character }
 
         setCharacter([...characters, newCharacter])
     }
 
-    //const { characters } = this.state;
     return (
         <div className='container' >
             <Table characterData={characters} removeCharacter={removeCharacter} />
